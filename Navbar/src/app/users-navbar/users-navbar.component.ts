@@ -21,6 +21,8 @@ export class UsersNavbarComponent {
   // userRoles: string[] =  this.authService.getUser().roles!; 
   userRoles: string[] = ["Admin", "Owner"]
 
+  //Traer con el authService
+  actualRole : string = "Admin"
   //Lista de botones
   buttonsList: SideButton[] = [];
 
@@ -130,5 +132,9 @@ export class UsersNavbarComponent {
 
   setTitle(title: string) {
     this.pageTitle = title;
+  }
+
+  selectRole(role : string){
+    this.actualRole = role;
   }
 }

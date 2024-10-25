@@ -11,23 +11,35 @@ import { CommonModule } from '@angular/common';
   styleUrl: './users-side-button.component.css'
 })
 export class UsersSideButtonComponent {
-  
+
   //Expandir o cerrar
-  @Input() expanded : boolean = false;
+  @Input() expanded: boolean = false;
 
   //Botones
-  @Input() info : SideButton = new SideButton();
+  @Input() info: SideButton = new SideButton();
 
   //Rol del usuario logeado
-  @Input() userRoles : string[] = [];
+  @Input() userRole: string = "";
 
   @Output() sendTitle = new EventEmitter<string>();
 
-  constructor(private route : Router){
+  constructor(private route: Router) {
   }
 
-  redirect(path : string, title : string){
-    this.sendTitle.emit(title);
-    this.route.navigate([path]);
+
+  redirect(path: string, titleFather: string, titleChild: string) {
+    if (titleChild == '') {
+      this.sendTitle.emit(`${titleChild} ${titleFather}`);
+      this.route.navigate([path]);
+    }
+    else {
+      this.sendTitle.emit(`${titleChild} ${titleFather.toLowerCase()}`);
+      this.route.navigate([path]);
+    }
   }
+
+  // redirect(path : string, title : string){
+  //   this.sendTitle.emit(title);
+  //   this.route.navigate([path]);
+  // }
 }
